@@ -1,94 +1,172 @@
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+
 <p align="center">
-<img src="https://nos.jkt-1.neo.id/aditiastorage/asset/ilustrasi/Information-tab-rafiki.png" width="350" alt="figure-title">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Aplikasi Analisa Penjualan
-(Menggunakan metode apriori)
+## Table Of Contents
 
-<br/>
-<strong>Fitur</strong>
-<li>Manajemen produk</li>
-<li>Manajemen transaksi</li>
-<li>Create dummy data transaksi (untuk keperluan riset/skripsi, sehingga tidak pelu create data transaksi real)</li>
-<li>Analisa penjualan</li>
-<li>Laporan analisa penjualan</li>
+[[_TOC_]]
 
-## Tampilan Aplikasi 
+## Requirements
+- Laravel 9.x (PHP 8.1)
+- NodeJS > 14
+- Composer
 
-- Login Page
+## How to install
 
-<img src="https://nos.jkt-1.neo.id/aditiastorage/asset/screenshoot/aplikasi-analisa-penjualan-apriori/loginpage.png" width="800px"><br/>
+### Clone Repository
+open your terminal, go to the directory that you will install this project, then run the following command:
 
-- Dashboard Page
+```bash
+git clone http://demo.te.net.id:8001/yyusronwirawan/base-laravel.git
 
-<img src="https://nos.jkt-1.neo.id/aditiastorage/asset/screenshoot/aplikasi-analisa-penjualan-apriori/dashboardpage.png" width="800px"><br/>
+cd base-laravel 
+```
 
-- Data Produk
+### Install packages
+Install vendor using composer
 
-<img src="https://nos.jkt-1.neo.id/aditiastorage/asset/screenshoot/aplikasi-analisa-penjualan-apriori/data-produk.png" width="800px"><br/>
+```bash
+composer update
+```
 
-- Tambah Data Produk
+Install node module using npm
 
-<img src="https://nos.jkt-1.neo.id/aditiastorage/asset/screenshoot/aplikasi-analisa-penjualan-apriori/tambah-produk.png"><br/>
+```bash
+npm install
+```
 
-- Pengujian 1
+### Configure .env
+Copy .env.example file
 
-<img src="https://nos.jkt-1.neo.id/aditiastorage/asset/screenshoot/aplikasi-analisa-penjualan-apriori/pengujian-1.png" width="800px"><br/>
+```bash
+cp .env.example .env
+```
 
-- Pengujian 2
+Then run the following command :
 
-<img src="https://nos.jkt-1.neo.id/aditiastorage/asset/screenshoot/aplikasi-analisa-penjualan-apriori/pengujian-2.png" width="800px"><br/>
+```php
+php artisan key:generate
+```
 
-- Sukses Pengujian
+### Migrate Data
+create an empty database with mysql 8.x version, then setup that fresh db at your .env file, then run the following command to generate all tables and seeding dummy data:
 
-<img src="https://nos.jkt-1.neo.id/aditiastorage/asset/screenshoot/aplikasi-analisa-penjualan-apriori/sukses-pengujian.png" width="800px"><br/>
+```php
+php artisan migrate:fresh --seed
+```
+### Public Disk
+To make these files accessible from the web, you should create a symbolic link from public/storage to storage/app/public.
+To create the symbolic link, you may use the storage:link Artisan command:
 
-- Hasil Analisa 1
+```php
+php artisan storage:link
+```
 
-<img src="https://nos.jkt-1.neo.id/aditiastorage/asset/screenshoot/aplikasi-analisa-penjualan-apriori/hasil-pengujian-1.png" width="800px"><br/>
+### Running Application
+To serve the laravel app, you need to run the following command in the project director (This will serve your app, and give you an adress with port number 8000 or etc)
+- **Note: You need run the following command into new terminal tab**
 
-- Hasil Analisa 2
+```php
+php artisan serve
+```
 
-<img src="https://nos.jkt-1.neo.id/aditiastorage/asset/screenshoot/aplikasi-analisa-penjualan-apriori/hasil-pengujian-2.png" width="800px"><br/>
+Running vite
+- **Note: You need run the following command into new terminal tab**
 
-- Laporan Pengujian 2
+```bash
+npm run dev
+```
 
-<img src="https://nos.jkt-1.neo.id/aditiastorage/asset/screenshoot/aplikasi-analisa-penjualan-apriori/laporan-pengujian.png" width="800px"><br/>
+Access from public not found 404
+```bash
+sudo a2enmod rewrite
+sudo service apache2 restart
+AllowOverride All
+```
 
-<br/>
-<strong>Instalasi</strong>
+## Email Test
 
-- Pastikan sudah terinstall composer, lakukan instalasi dependency
+MailHog is an email testing tool for developers.
+- Inbox : 202.91.14.2:8025(http://202.91.14.2:8025)
+- SMTP : 202.91.14.2:8125
 
-<code>composer update</code>
+## Integrate a Template
+- Unzip in resource/template/name_template
+- Add base css to resources/css/app.css
+- Make main.js and add base js to resources/js/main.js (for production, see example)
+- Make main-dev.js and add base js to resources/js/main-dev.js (for dev, see example)
+- Edit vite.config.js
 
-- Copy file .env.example ke .env , setting database, kemudian lakukan migrate & seed : 
+## Make API Documentation
+### Swagger UI
+- Manual write yaml/json
+> - Edit resource/js/swagger.js
+> - change url of json/yaml
+- Using Postman Collection JSON
+> - export collection to json
+> - convert postman json to openapi json/yaml using [apimatic.io](http://apimatic.io) (Login / Signup Free)
+> - Transform API
+> - Convert and download
+> - do as manual write
 
-<code>php artisan migrate:refresh --seed</code>
+## VS Code Extension
+- code --list-extensions | xargs -L 1 echo code --install-extension (UNIX)
+- code --list-extensions | % { "code --install-extension $_" } (Windows)
 
-- Lakukan generate key 
+> - code --install-extension ahinkle.laravel-model-snippets
+> - code --install-extension amiralizadeh9480.laravel-extra-intellisense
+> - code --install-extension austenc.laravel-blade-spacer
+> - code --install-extension bmewburn.vscode-intelephense-client
+> - code --install-extension calebporzio.better-phpunit
+> - code --install-extension codingyu.laravel-goto-view
+> - code --install-extension formulahendry.auto-close-tag
+> - code --install-extension MehediDracula.php-namespace-resolver
+> - code --install-extension ms-vscode.sublime-keybindings
+> - code --install-extension neilbrayfield.php-docblocker
+> - code --install-extension onecentlin.laravel-blade
+> - code --install-extension onecentlin.laravel5-snippets
+> - code --install-extension SonarSource.sonarlint-vscode
+> - code --install-extension Codeium.codeium
 
-<code>php artisan key:generate</code>
+## Usefull Links
 
-- Untuk mengimport produk harap edit/sesuaikan format file yang ada di <code>public/file_import/DATA_PRODUK.xlsx</code>, kemudian jalankan perintah :
+- [Laravel 10 Documentations](https://laravel.com/docs/10.x/)
+- [Spatie Laravel Permission](https://spatie.be/docs/laravel-permission/v5/introduction/)
+- [AdminLTE](https://adminlte.io/)
+- [Check Coding Standard](https://github.com/squizlabs/PHP_CodeSniffer)
+- [PHP code style fixer - Laravel Pint](https://laravel.com/docs/9.x/pint)
+- [Package yang berisi data Provinsi, Kabupaten/Kota, dan Kecamatan/Desa di seluruh Indonesia](https://github.com/laravolt/indonesia)
 
-<code>php artisan importDataProduk</code>
+## FAQ
+#### Apakah itu laravel pint?
+Alat untuk merapihkan penulisan PHP, cara penggunaan ./vendor/bin/pint
+#### Bagaimana cara mengubah template?
+Template berada di folder storage/app.public/. Daftarkan url js dan css ke table preference. ubah THEME="default" di environment (.env)
+#### Arsitektur apa yang digunakan?
+Minimal dengan arsitektur MVC, bisa juga menambahkan service pattern, dan memungkinkan juga memakai repository jika diperlukan.
+#### Apakah wajib mengunakan service dan repository ini?
+Penggunaan service dan repository adalah optional.
+#### Kapan penggunaan service pattern itu?
+Penggunaan service pattern ketika banyak logic yang bisa dipanggil ulang.
+#### Apa isi dari service pattern itu?
+Isi service pattern adalah logic.
+#### Kapan penggunaan repository pattern itu?
+Penggunaan repository pattern ketika mengakses data selain database atau ketika query manual.
+#### Apa isi dari repository pattern itu?
+Isi repository pattern adalah query bisa juga logic untuk ambil data selain database semisal dari API.
+#### Apakah boleh memanggil model di service?
+Boleh
+#### Apakah boleh memanggil model di repository?
+Boleh
+#### Bisakah service menggunakan service lainnya?
+Bisa
 
-- Untuk mengimport data penjualan/transaksi harap edit/sesuaikan format file yg ada di <code>public/file_import/DATA_PENJUALAN.xlsx</code>, kemudian jalankan perintah :
 
-<code>php artisan importDataPenjualan</code>
+## License
 
-- Untuk membuat data transaksi dummy, lakukan dengan perintah berikut, dimana tf(total faktur) adalah total faktur yg akan di create 
-
-<code>php artisan createFakePenjualan tf=100</code>
-
-- Jalankan aplikasi
-
-<code>php artisan serve</code>
-
-Jika terdapat kendala dalam penggunaan/pengembangan aplikasi ini dapat menghubungi 
-
-<strong>(alditha.forum@gmail.com)</strong>
-
-
-<i>Jika dirasa aplikasinya bermanfaat mungkin kiranya bisa mengapresiasi pengembang aplikasi ini dengan berdonasi di https://saweria.co/haxorsprogramming, berapapun donasi yang diberikan akan sangat membantu kami dalam pengembangan aplikasi" selanjutnya, terima kasih ,,, </i>
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
